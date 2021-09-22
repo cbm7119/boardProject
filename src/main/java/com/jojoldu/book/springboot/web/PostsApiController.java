@@ -8,13 +8,13 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor    //final이 선언된 모든 필드를 인자값으로 하는 생성자를 생성. 생성자 Bean 주입 방식
 @RestController
 public class PostsApiController {
     private final PostsService postsService;
 
     @PostMapping("/api/v1/posts")
-    public Long svave(@RequestBody PostsSaveRequestDto requestDto) {
+    public Long save(@RequestBody PostsSaveRequestDto requestDto) {
         return postsService.save(requestDto);
     }
 
