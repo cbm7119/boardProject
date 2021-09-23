@@ -1,15 +1,23 @@
 package com.jojoldu.book.springboot.web;
 
+import com.jojoldu.book.springboot.service.posts.PostsService;
 import jdk.nashorn.internal.objects.annotations.Getter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequiredArgsConstructor
 @Controller
 public class IndexController {
 
+    private final PostsService postsService;
+
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("posts", postsService.findAllDesc());
         return "index";
     }
 
@@ -17,4 +25,7 @@ public class IndexController {
     public String postsSave() {
         return "posts-save";
     }
+
+
+
 }
